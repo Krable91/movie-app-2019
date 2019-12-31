@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+function Food({ fav, nation }){
+  return (
+<h1>I love {fav} and, this is from {nation}</h1>
+  );
+}
+function OwPosition({ position }){
+  return (
+    <h2>오버워치에는 {position}가 있다</h2>
+  );
+}
+const favFoods = [
+  {
+    name: "kimchi",
+    nation: "korea"
+  },
+  {
+    name: "kimbab",
+    nation: "korea"
+  },
+  {
+    name: "sushi",
+    nation: "japan"
+},
+{
+  name: "pasta",
+  nation: "italy"
+}
+]
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Hello react!</p>
+      {favFoods.map(food => <Food fav={food.name} nation={food.nation} />)}
     </div>
   );
 }
