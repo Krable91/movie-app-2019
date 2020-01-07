@@ -1,42 +1,23 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
-function Food({ fav, nation }){
-  return (
-<h1>I love {fav} and, this is from {nation}</h1>
-  );
-}
-function OwPosition({ position }){
-  return (
-    <h2>오버워치에는 {position}가 있다</h2>
-  );
-}
-const favFoods = [
-  {
-    name: "kimchi",
-    nation: "korea"
-  },
-  {
-    name: "kimbab",
-    nation: "korea"
-  },
-  {
-    name: "sushi",
-    nation: "japan"
-},
-{
-  name: "pasta",
-  nation: "italy"
-}
-]
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  }
+  getMovies = async () => {
+    movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  }
+  componentDidMount() {
+    this.getmobe
+  }
+  render() {
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading" : "We are ready"}
 
-
-function App() {
-  return (
-    <div className="App">
-      <p>Hello react!</p>
-      {favFoods.map(food => <Food fav={food.name} nation={food.nation} />)}
     </div>
-  );
+  }
 }
 
 export default App;
