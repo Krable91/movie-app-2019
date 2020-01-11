@@ -37,11 +37,13 @@ li {
     flex-direction: column;
     overflow:hidden;
 }
-
+.movie__data > div > span{
+    margin-right: 10px;
+}
 .movie__title {
     font-size: 18px;
 }
-li, .movie__year, .movie__summary {
+li, .movie__year, .movie__rating, .movie__runtime, .movie__summary {
     color: gray;
     font-size: 11px;
 }

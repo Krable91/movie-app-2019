@@ -24,3 +24,7 @@ body, body .container {
 .sortBtns button {
     margin: 5px;
 }
+.firstComent {
+    display: flex;
+    justify-content: center;
+}

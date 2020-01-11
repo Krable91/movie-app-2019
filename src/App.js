@@ -20,7 +20,7 @@ class App extends React.Component {
     const {sortType, sortKor} = this.state;
     if (value === 1) {
       this.sortType = "rating";
-      this.sortKor= "별점순";
+      this.sortKor= "평점순";
     } else if (value === 2) {
       this.sortType = "date_added";
       this.sortKor= "추가된 날짜순";
@@ -32,7 +32,7 @@ class App extends React.Component {
       this.sortKor= "제작년도순";
     } else if (value === 5){
       this.sortType = "like_count";
-      this.sortKor= "좋아요순";
+      this.sortKor= "선호도순";
     }
     this.setState({sortType})
     this.getMovies();
@@ -41,49 +41,35 @@ class App extends React.Component {
     const { isLoading, movies} = this.state;
     return (
       <section className="container">
+        <div className="header">
+            <div className="sortBtns">
+              <button onClick={() => this.sortChange(1)}>
+                평점순
+              </button>
+              <button onClick={() => this.sortChange(2)}>
+                추가된 날짜순
+              </button>
+              <button onClick={() => this.sortChange(3)}>
+                제목순
+              </button>
+              <button onClick={() => this.sortChange(4)}>
+                제작년도순
+              </button>
+              <button onClick={() => this.sortChange(5)}>
+                선호도순
+              </button>
+            </div>
+            {isLoading ? (
+              <span>정렬 방식을 선택해주세요.</span>
+            ) : (
+              <span>{this.sortKor}</span>
+            )}
+          </div> 
         {isLoading ? (
-          <div className="header">
-            <div className="sortBtns">
-              <button onClick={() => this.sortChange(1)}>
-                평점순
-              </button>
-              <button onClick={() => this.sortChange(2)}>
-                추가된 날짜순
-              </button>
-              <button onClick={() => this.sortChange(3)}>
-                제목순
-              </button>
-              <button onClick={() => this.sortChange(4)}>
-                제작년도순
-              </button>
-              <button onClick={() => this.sortChange(5)}>
-                좋아요순
-              </button>
-              </div>
-              <span>정렬 방법을 선택해주세요.</span>
-          </div> 
+          <div className="firstComent">
+            <span>Waiting...</span>
+          </div>
         ) : (
-        <div>
-          <div className="header">
-            <div className="sortBtns">
-              <button onClick={() => this.sortChange(1)}>
-                평점순
-              </button>
-              <button onClick={() => this.sortChange(2)}>
-                추가된 날짜순
-              </button>
-              <button onClick={() => this.sortChange(3)}>
-                제목순
-              </button>
-              <button onClick={() => this.sortChange(4)}>
-                제작년도순
-              </button>
-              <button onClick={() => this.sortChange(5)}>
-                좋아요순
-              </button>
-              </div>
-              <span>현재 정렬 방식은 '{this.sortKor}' 입니다.</span>
-          </div> 
           <div className="movies">
             {movies.map(movie => (
               <Movie 
@@ -94,10 +80,11 @@ class App extends React.Component {
                 summary={movie.summary} 
                 poster={movie.medium_cover_image}
                 genres={movie.genres}
+                rating={movie.rating}
+                runtime={movie.runtime}
               />
             ))}
           </div>
-        </div>
         )}
       </section>
     )
