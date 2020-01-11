@@ -11,7 +11,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "serialize-javascript": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +35,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://krable91.github.io/movie-app-2019/"
+  "homepage": "https://krable91.github.io/movie_app_2019/"
 }
