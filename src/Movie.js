@@ -3,8 +3,11 @@ import propTypes from "prop-types";
 import "./Movie.css";
 
 
-function Movie({ id, year, title, summary, poster, genres, rating, runtime}) {
-    return <div className="movie">
+function Movie({ id, year, title, summary, poster, genres, rating, runtime, moviesMenu}) {
+    return (
+    <div className="moviesContainer">
+        {moviesMenu ? (
+            <div className="movieTrue">
                 <img src={poster} alt={title} title= {title}/>
                 <div className="movie__data">
                     <span className="movie__title">{title}</span>
@@ -21,7 +24,13 @@ function Movie({ id, year, title, summary, poster, genres, rating, runtime}) {
                     <p className="movie__summary">{summary}</p>
                 </div>
             </div>
-}
+        ) : (
+            <div className="movieFalse">
+                <img src={poster} alt={title} title= {title}/>
+            </div>
+        )}
+    </div>
+    )}
 
 Movie.propTypes = {
     id: propTypes.number.isRequired,

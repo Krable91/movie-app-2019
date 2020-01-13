@@ -1,14 +1,21 @@
-.movie {
+.moviesContainer {
+    margin-top: 50px;
+    padding: 0;
+}
+.movieTrue {
+    height: 100%;
     display: grid; 
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 160px;
     padding: 5%;
-    margin-top: 50px;
     box-shadow: 
         0 30px 60px -12px rgba(50, 50, 93, 0.25),
         0 18px 36px -18px rgba(0, 0, 0, 0.3), 
         0 -12px 36px -8px rgba(0, 0, 0, 0.025);
     background-color: white;
+}
+.movieFalse {
+
 }
 ul {
     margin: 0;
@@ -21,7 +28,15 @@ li {
     list-style:none;
     display: inline;
 }
-.movie img {
+.movieFalse > img {
+    position: relative;
+    max-width: 100%;
+    box-shadow: 
+        0 30px 60px -12px rgba(50, 50, 93, 0.25),
+        0 18px 36px -18px rgba(0, 0, 0, 0.3), 
+        0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+.movieTrue > img{
     position: relative;
     top: -50px;
     max-width: 100%;
@@ -31,7 +46,7 @@ li {
         0 18px 36px -18px rgba(0, 0, 0, 0.3), 
         0 -12px 36px -8px rgba(0, 0, 0, 0.025);
 }
-.movie img:hover {
+.movieTrue img:hover {
     top: 0px;
     right: -50%;
     transform: scale(2, 2);

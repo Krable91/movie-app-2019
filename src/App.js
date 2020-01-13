@@ -12,14 +12,21 @@ class App extends React.Component {
     sortKor: "",
     isLoading: true,
     movies: [],
+    moviesMenu: true
   }
   getMovies = async () => {
     const {data: { data: {movies}}} = 
     await axios.get(`https://yts-proxy.now.sh/list_movies.json?sort_by=${this.sortType}`);
     this.setState({ movies, isLoading: false })
   }
+  moviesMenuChange(){
+    const {moviesMenu} = this.state;
+    console.log(moviesMenu);
+    this.setState({moviesMenu: !moviesMenu })
+
+  }
   sortChange(value){
-    const {sortType, sortKor} = this.state;
+    const {sortType} = this.state;
     if (value === 1) {
       this.sortType = "rating";
       this.sortKor= "평점순";
@@ -40,14 +47,14 @@ class App extends React.Component {
     this.getMovies();
   }
   render() {
-    const { isLoading, movies} = this.state;
+    const { isLoading, movies, moviesMenu} = this.state;
     return (
       <section className="container">
         <div className="header">
 
           <div className="clockContainer">
-            <Clock format={`YYYY년MM월DD일`} ticking={true} timezone={`KST`}/>
-            <Clock format={`HH시mm분ss초`} ticking={true} timezone={`KST`}/>
+            <Clock format={`YYYY년MM월DD일`} ticking={true} timezone={`Asia/Seoul`}/>
+            <Clock format={`HH시mm분ss초`} ticking={true} timezone={`Asia/Seoul`}/>
           </div>
           <div className="headerRight">  
             <div className="sortBtns">
@@ -67,11 +74,14 @@ class App extends React.Component {
                 선호도순
               </button>
             </div>
-            {isLoading ? (
-            <span>정렬 방식을 선택해주세요.</span>
-            ) : (
-              <span>{this.sortKor}</span>
-            )}
+            <div className="headerRightBottom">
+              <button onClick={() => this.moviesMenuChange()}>보기방식바꾸기</button>
+              {isLoading ? (
+              <span>정렬 방식을 선택해주세요.</span>
+              ) : (
+                <span>{this.sortKor}</span>
+              )}
+            </div>
           </div>
 
         </div>  
@@ -80,21 +90,43 @@ class App extends React.Component {
             <span>Waiting...</span>
           </div>
         ) : (
-          <div className="movies">
-            {movies.map(movie => (
-              <Movie 
-                key={movie.id}
-                id={movie.id} 
-                year={movie.year} 
-                title={movie.title} 
-                summary={movie.summary} 
-                poster={movie.medium_cover_image}
-                genres={movie.genres}
-                rating={movie.rating}
-                runtime={movie.runtime}
-              />
-            ))}
-          </div>
+          <section className="container">
+            {moviesMenu ? (
+              <div className="moviesTrue">
+                {movies.map(movie => (
+                  <Movie 
+                  key={movie.id}
+                  id={movie.id} 
+                  year={movie.year} 
+                  title={movie.title} 
+                  summary={movie.summary} 
+                  poster={movie.medium_cover_image}
+                  genres={movie.genres}
+                  rating={movie.rating}
+                  runtime={movie.runtime}
+                  moviesMenu={moviesMenu}
+                  />
+                ))} 
+              </div>
+            ) : (
+              <div className="moviesFalse">
+                {movies.map(movie => (
+                  <Movie 
+                  key={movie.id}
+                  id={movie.id} 
+                  year={movie.year} 
+                  title={movie.title} 
+                  summary={movie.summary} 
+                  poster={movie.medium_cover_image}
+                  genres={movie.genres}
+                  rating={movie.rating}
+                  runtime={movie.runtime}
+                  moviesMenu={moviesMenu}
+                  />
+                ))} 
+              </div>
+            )}
+          </section>
         )}
       </section>
     )
