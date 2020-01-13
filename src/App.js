@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
+import Clock from "react-live-clock";
 import Movie from "./Movie";
+
 import "./App.css";
 /*import "./APP_example.css";*/
 
@@ -9,7 +11,7 @@ class App extends React.Component {
     sortType: "",
     sortKor: "",
     isLoading: true,
-    movies: []
+    movies: [],
   }
   getMovies = async () => {
     const {data: { data: {movies}}} = 
@@ -42,6 +44,12 @@ class App extends React.Component {
     return (
       <section className="container">
         <div className="header">
+
+          <div className="clockContainer">
+            <Clock format={`YYYY년MM월DD일`} ticking={true} timezone={`KST`}/>
+            <Clock format={`HH시mm분ss초`} ticking={true} timezone={`KST`}/>
+          </div>
+          <div className="headerRight">  
             <div className="sortBtns">
               <button onClick={() => this.sortChange(1)}>
                 평점순
@@ -60,11 +68,13 @@ class App extends React.Component {
               </button>
             </div>
             {isLoading ? (
-              <span>정렬 방식을 선택해주세요.</span>
+            <span>정렬 방식을 선택해주세요.</span>
             ) : (
               <span>{this.sortKor}</span>
             )}
-          </div> 
+          </div>
+
+        </div>  
         {isLoading ? (
           <div className="firstComent">
             <span>Waiting...</span>

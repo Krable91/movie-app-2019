@@ -1,19 +1,31 @@
 body, body .container {
-    margin: 0;
+    margin: 1px;
     padding: 0;
     height: 100%;
-}
-.header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    background-color: #eff3f7;
     border: 1px black solid;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #eff3f7;
+    padding: 5px;
+    border-bottom: 1px black solid;
+}
+.clockContainer {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.headerRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.sortBtns > button {
+    margin-left: 5px;
+}
+
 .movies {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -21,10 +33,8 @@ body, body .container {
     background-color: #eff3f7;
     padding: 20px;
 }   
-.sortBtns button {
-    margin: 5px;
-}
 .firstComent {
     display: flex;
     justify-content: center;
+    padding: 5px;
 }
